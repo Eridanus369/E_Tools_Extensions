@@ -1,0 +1,15 @@
+{
+    "schema_version": "1.0.0",
+    "name": "E-Tools Extensions",
+    "description": "Custom Blender extensions repository by Eridanus369",
+    "extensions": [
+        {
+            "id": "enetschematic",
+            "name": "ENetSchematic",
+            "version": "1.0.0",
+            "blender_version_min": "5.2.0",
+            "type": "add-on",
+            "download_url": "https://raw.githubusercontent.com/Eridanus369/E_Tools_Extensions/main/zips/ENetSchematic.zip"
+        }
+    ]
+}
