@@ -1,0 +1,10 @@
+schema_version = "1.0.0"
+id = "enetschematic"
+version = "1.0.0"
+name = "ENetSchematic"
+maintainer = "Eridanus"
+tagline = "ENet Schematic tool for Blender"
+type = "add-on"
+blender_version_min = "5.0.0"
+website = "https://github.com/Eridanus369/E_Tools_Extensions"
+license = ["SPDX:MIT"]
