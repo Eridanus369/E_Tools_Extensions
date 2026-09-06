@@ -22,11 +22,13 @@ A small collection of Blender add-ons, installable via remote repository.
 
 ---
 
-## Add-on: ENetSchematic — Same-Net Virtual Connection & Labeling
+## Plugins
+
+<details>
+<summary>1. ENetSchematic — Same-Net Virtual Connection & Labeling (v1.0)</summary>
 
 Adds circuit-schematic style **net labels** to Blender’s node editor. Assign a net name to native Reroute nodes, and all nodes with the same net name are automatically connected with hidden real links. Labels are drawn next to each named Reroute.
 
-**Version:** 1.0  
 **Compatible:** Blender 4.0 – 5.3  
 **Type:** Node Editor Add-on  
 
@@ -63,5 +65,7 @@ Adds circuit-schematic style **net labels** to Blender’s node editor. Assign a
 - Disabling or uninstalling the add‑on removes all auto‑links automatically (manual links unaffected)
 - Labels are viewport‑only and not rendered
 - Auto‑connection works only within the same node tree
+
+</details>
 
 </details>
