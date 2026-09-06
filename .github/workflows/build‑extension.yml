@@ -1,0 +1,72 @@
+name: Build & Release Extension
+run-name: Build ${{ github.ref_name }}
+
+on:
+  push:
+    tags:
+      - '*-v*'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu‑latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch‑depth: 0
+
+      - name: Extract plugin id & version from tag
+        id: tagparse
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          PLUGIN_ID=$(echo "$TAG" | cut -d'-' -f1)
+          VERSION_RAW=$(echo "$TAG" | cut -d'-' -f2)
+          VERSION=${VERSION_RAW#v}
+          echo "plugin_id=$PLUGIN_ID" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_ENV
+          echo "tag=$TAG" >> $GITHUB_ENV
+
+      - name: Setup Blender 5.2
+        uses: ./.github/actions/setup‑blender
+        # 没有就用官方action下载blender
+        run: |
+          wget https://download.blender.org/release/Blender5.2/blender‑5.2.0‑linux‑x64.tar.xz
+          tar xf blender‑5.2.0‑linux‑x64.tar.xz
+          echo "BLENDER_BIN=$PWD/blender‑5.2.0‑linux‑x64/blender" >> $GITHUB_ENV
+
+      - name: Build extension zip
+        run: |
+          SRC="./Extensions/${{ env.PLUGIN_ID }}"
+          ${{ env.BLENDER_BIN }} --command extension build --source‑dir "$SRC" --output‑dir ./build_zips
+
+      - name: Create or Update GitHub Release
+        uses: softprops/action‑gh‑release@v2
+        with:
+          tag_name: ${{ env.tag }}
+          name: ${{ env.PLUGIN_ID }} ${{ env.version }}
+          files: ./build_zips/*.zip
+          generate_release_notes: true
+
+      - name: Regenerate index.json (Blender official command)
+        run: |
+          ${{ env.BLENDER_BIN }} --command extension server‑generate \
+            --repo‑dir ./Extensions \
+            --output ./index.json
+
+      - name: Commit & push updated index.json
+        run: |
+          git config user.name "github‑actions[bot]"
+          git config user.email "github‑actions[bot]@users.noreply.github.com"
+          git add index.json
+          git commit -m "CI: update index.json after release ${{ env.tag }}" || true
+          git push origin main
+
+      - name: Deploy GitHub Pages
+        uses: actions/deploy‑pages@v4
+        with:
+          folder: ./
