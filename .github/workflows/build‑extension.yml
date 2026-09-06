@@ -2,12 +2,9 @@ name: Build & Release Extension
 run-name: Build ${{ github.ref_name }}
 
 on:
+  workflow_dispatch:
   release:
     types: [published]
-  push:
-    tags:
-      - '*-v*'
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -18,33 +15,23 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Extract plugin id & version
-        id: meta
-        run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            PLUGIN_ID="ENetSchematic"
-            VERSION="1.0.0"
-          else
-            TAG=${GITHUB_REF#refs/tags/}
-            PLUGIN_ID=$(echo "$TAG" | cut -d'-' -f1)
-            VERSION=$(echo "$TAG" | cut -d'v' -f2)
-          fi
-          echo "plugin_id=$PLUGIN_ID" >> $GITHUB_OUTPUT
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Build extension zip
         run: |
-          PLUGIN_ID=${{ steps.meta.outputs.plugin_id }}
+          PLUGIN_ID="ENetSchematic"
           mkdir -p ./zips
           cp -r "./Extensions/$PLUGIN_ID" ./
           zip -r "./zips/$PLUGIN_ID.zip" "$PLUGIN_ID"
           rm -rf "./$PLUGIN_ID"
 
-      - name: Upload to release assets
-        if: github.event_name == 'release' || github.event_name == 'push'
+      - name: Upload artifact for manual download
+        uses: actions/upload-artifact@v4
+        with:
+          name: ENetSchematic-zip
+          path: ./zips/*.zip
+
+      - name: Upload to release assets (only on release publish)
+        if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
           files: ./zips/*.zip
