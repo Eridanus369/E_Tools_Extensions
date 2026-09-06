@@ -67,5 +67,3 @@ Adds circuit-schematic style **net labels** to Blender’s node editor. Assign a
 - Auto‑connection works only within the same node tree
 
 </details>
-
-</details>
