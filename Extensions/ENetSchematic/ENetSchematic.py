@@ -2,7 +2,7 @@ bl_info = {
     "name": "ENetSchematic",
     "author": "Eridanus",
     "version": (1, 0, 0),
-    "blender": (4, 0, 0),
+    "blender": (5, 2, 0),
     "location": "Node Editor > N Panel > Net Schematic",
     "description": "Named nets over native Reroute nodes with auto-connect",
     "category": "Node",
