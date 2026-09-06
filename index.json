@@ -1,19 +1,28 @@
 {
-    "schema_version": "1.0.0",
-    "name": "E-Tools Extensions",
-    "description": "Custom Blender extensions repository by Eridanus369",
-    "extensions": [
+    "version": "v1",
+    "blocklist": [],
+    "data": [
         {
+            "schema_version": "1.0.0",
             "id": "enetschematic",
             "name": "ENetSchematic",
+            "tagline": "ENetSchematic addon for Blender",
             "version": "1.0.0",
-            "type": "addon",
-            "archive_url": "https://github.com/Eridanus369/E_Tools_Extensions/releases/download/enetschematic-v1.0.0/ENetSchematic.zip",
-            "blender_version_min": "4.2.0",
-            "blender_version_max": "4.5.0",
-            "license": "GPL-3.0",
-            "authors": ["Eridanus369"],
-            "description": "ENetSchematic addon for Blender"
+            "type": "add-on",
+            "maintainer": "Eridanus369",
+            "license": [
+                "SPDX:GPL-3.0-or-later"
+            ],
+            "blender_version_min": "5.2.0",
+            "website": "https://github.com/Eridanus369",
+            "copyright": [
+                "2026 Eridanus369"
+            ],
+            "tags": [
+                "3D View",
+                "Object"
+            ],
+            "archive_url": "https://github.com/Eridanus369/E_Tools_Extensions/releases/download/enetschematic-v1.0.0/ENetSchematic.zip"
         }
     ]
 }
