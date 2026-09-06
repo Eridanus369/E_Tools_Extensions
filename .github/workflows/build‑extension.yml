@@ -23,9 +23,15 @@ jobs:
       - name: Extract plugin id & version from tag
         id: meta
         run: |
-          TAG=${GITHUB_REF#refs/tags/}
-          PLUGIN_ID=$(echo "$TAG" | cut -d'-' -f1)
-          VERSION=$(echo "$TAG" | cut -d'v' -f2)
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            TAG=${GITHUB_REF#refs/tags/}
+            PLUGIN_ID=$(echo "$TAG" | cut -d'-' -f1)
+            VERSION=$(echo "$TAG" | cut -d'v' -f2)
+          else
+            # workflow_dispatch手动触发固定写你的插件ID
+            PLUGIN_ID="ENetSchematic"
+            VERSION="1.0.0"
+          fi
           echo "plugin_id=$PLUGIN_ID" >> $GITHUB_OUTPUT
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
@@ -39,12 +45,14 @@ jobs:
 
       - name: Upload zip to release
         uses: softprops/action-gh-release@v2
+        if: github.event_name == 'release'
         with:
           files: ./zips/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update index.json
+        if: github.event_name == 'release'
         run: |
           python3 - <<END
           import json, os
@@ -63,6 +71,7 @@ jobs:
           END
 
       - name: Commit index.json update
+        if: github.event_name == 'release'
         run: |
           git config --global user.name "github‑actions[bot]"
           git config --global user.email "github‑actions[bot]@users.noreply.github.com"
