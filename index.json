@@ -8,7 +8,6 @@
             "name": "ENetSchematic",
             "version": "1.0.0",
             "type": "addon",
-            "blender_version_min": "5.2.0",
             "archive_url": "https://github.com/Eridanus369/E_Tools_Extensions/releases/download/enetschematic-v1.0.0/ENetSchematic.zip"
         }
     ]
