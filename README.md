@@ -1,77 +1,67 @@
 # Blender Plugin Toolkit
 
-A small plugin toolkit for Blender, used to store those scattered little plugins. Install via remote library.
+A small collection of Blender add-ons, installable via remote repository.
 
 ---
 
-## Plugin 1: ENetSchematic — Same-Net Virtual Connection & Labeling
+## Installation
+
+### Method 1: Automatic Setup Script
+
+1. Download the script: [add.py](https://github.com/Eridanus369/E_Tools_Extensions/blob/main/scripts/add.py)  
+2. Open Blender’s **Scripting** workspace, paste or open the script and run it.  
+3. The script will add the remote repository and sync automatically.  
+4. Enable the add-on in **Preferences → Extensions**.
+
+### Method 2: Manual Remote Repository
+
+1. Go to **Edit → Preferences → Extensions**.  
+2. Click **Add Remote Repository** and enter:  
+   `https://eridanus369.github.io/E_Tools_Extensions/index.json`  
+3. Click **Sync**, then find and enable the desired add-on.
+
+---
+
+## Add-on: ENetSchematic — Same-Net Virtual Connection & Labeling
+
+Adds circuit-schematic style **net labels** to Blender’s node editor. Assign a net name to native Reroute nodes, and all nodes with the same net name are automatically connected with hidden real links. Labels are drawn next to each named Reroute.
 
 **Version:** 1.0  
-**Blender:** 4.0 – 5.3  
-**License:** GPL  
-**Type:** Node Editor Add-on
+**Compatible:** Blender 4.0 – 5.3  
+**Type:** Node Editor Add-on  
 
-### Overview
+<details>
+<summary>Features</summary>
 
-ENetSchematic brings circuit-schematic-style **net labels** to Blender's node editor.  
-Using native **Reroute** nodes, you can assign a network name (e.g. `VCC`, `NET_CLK`).  
-Nodes with the same net name are **automatically connected** via hidden real links — data flows between them, but the wires are invisible in the viewport.  
-A bright yellow label is drawn next to each named Reroute, so you can instantly see logical connections without visual clutter.
-
-### Features
-
-- Assign custom net names to Reroute nodes
-- Same‑net auto‑connection (real links, hidden from view)
-- Visual net name labels (bright yellow, 13px, follows node)
+- Assign custom net names to Reroute nodes (e.g., `VCC`, `NET_CLK`)
+- Same‑net nodes auto‑connect with real but invisible links
+- Net name labels displayed next to nodes (color and size customizable in preferences)
 - Right‑click context menu for quick editing
-- N‑panel with scan, connect, disconnect and selection tools
+- N‑panel with scan, connect, disconnect, and selection tools
 - Net list with one‑click selection of all nodes in a net
 - Safe cleanup on uninstall (auto‑links removed, no leftovers)
 
-### Installation
+</details>
 
-1. Download `node_net_schematic_label.py`
-2. In Blender: **Edit → Preferences → Add-ons → Install…**
-3. Select the file and enable the add‑on (“Node: ENetSchematic”)
-4. The add‑on works in any node editor (Shader, Geometry Nodes, Compositor, etc.)
+<details>
+<summary>Usage</summary>
 
-### Usage
+- **Set net name**: Select Reroute node(s) → Right‑click → Net Schematic → Set Net Name
+- **Auto connect**: In N‑panel, click **Auto Connect Nets**
+- **Scan nets**: Click **Scan All Nets** to update the net list
+- **Select net**: In the net list, click **Select** to select all nodes in that net
+- **Clear net name**: Right‑click → Net Schematic → Clear Net Name
+- **Remove auto links**: Click **Disconnect All Auto Links** in N‑panel
 
-#### Assign a net name
-- Select one or more Reroute nodes
-- Right‑click → **Net Schematic → Set Net Name** (or use the N‑panel)
-- Enter a net name (e.g. `NET_CLK`), click OK
+</details>
 
-#### Auto‑connect same nets
-- In the N‑panel, press **Auto Connect Nets**  
-  All Reroute nodes sharing the same non‑empty net name will be connected in a chain (first node is source). The connecting wires are real but invisible.
+<details>
+<summary>Notes & Limitations</summary>
 
-#### Scan & manage nets
-- Press **Scan All Nets** to update the net list
-- Each row shows net name and node count
-- Click **Select** to select all Reroute nodes in that net
-
-#### Clear a net name
-- Select Reroute(s), right‑click → **Net Schematic → Clear Net Name**
-- Or clear the name field in the N‑panel
-
-#### Remove auto‑connections
-- Press **Disconnect All Auto Links** in the N‑panel to remove all invisible links
-
-### Notes
-
-- Empty net names are ignored for both labeling and auto‑connection
+- Empty net names are ignored
 - Auto‑links are stored as JSON in the node tree’s custom property `auto_net_links`
-- Disabling or uninstalling the add‑on will automatically remove all auto‑links
-- Manual user‑created links are never touched
-- The hidden links are only invisible in the viewport; they are real links and can be inspected via Outliner (if enabled)
+- Disabling or uninstalling the add‑on removes all auto‑links automatically (manual links unaffected)
+- Labels are viewport‑only and not rendered
+- Auto‑connection works only within the same node tree
 
-### Known Limitations
-
-- No logical feedback (e.g. cycle prevention) beyond Blender’s own link restrictions
-- Auto‑connection only works within the same node tree
-- Labels are viewport‑only (not rendered in final output)
-
----
-
-*This plugin is part of a toolkit – see the main repository for more small Blender add‑ons.*
+</details>
