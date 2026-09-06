@@ -4,12 +4,13 @@ run-name: Build ${{ github.ref_name }}
 on:
   release:
     types: [published]
+  push:
+    tags:
+      - '*-v*'
   workflow_dispatch:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   build:
@@ -20,17 +21,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Extract plugin id & version from tag
+      - name: Extract plugin id & version
         id: meta
         run: |
-          if [[ "${{ github.event_name }}" == "release" ]]; then
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            PLUGIN_ID="ENetSchematic"
+            VERSION="1.0.0"
+          else
             TAG=${GITHUB_REF#refs/tags/}
             PLUGIN_ID=$(echo "$TAG" | cut -d'-' -f1)
             VERSION=$(echo "$TAG" | cut -d'v' -f2)
-          else
-            # workflow_dispatch手动触发固定写你的插件ID
-            PLUGIN_ID="ENetSchematic"
-            VERSION="1.0.0"
           fi
           echo "plugin_id=$PLUGIN_ID" >> $GITHUB_OUTPUT
           echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -43,38 +43,38 @@ jobs:
           zip -r "./zips/$PLUGIN_ID.zip" "$PLUGIN_ID"
           rm -rf "./$PLUGIN_ID"
 
-      - name: Upload zip to release
+      - name: Upload to release assets
+        if: github.event_name == 'release' || github.event_name == 'push'
         uses: softprops/action-gh-release@v2
-        if: github.event_name == 'release'
         with:
           files: ./zips/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update index.json
-        if: github.event_name == 'release'
+        if: github.event_name == 'release' || github.event_name == 'push'
         run: |
           python3 - <<END
-          import json, os
-          pid = "${{ steps.meta.outputs.plugin_id }}"
-          ver = "${{ steps.meta.outputs.version }}"
-          with open("index.json","r",encoding="utf-8") as f:
-              idx = json.load(f)
-          entry = next((x for x in idx if x["id"]==pid), None)
-          if entry is None:
-              entry = {"id":pid,"versions":[]}
-              idx.append(entry)
-          ver_item = {"version":ver,"tag":"${{ github.ref_name }}","url":"https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/"+pid+".zip"}
-          entry["versions"].append(ver_item)
-          with open("index.json","w",encoding="utf-8") as f:
-              json.dump(idx,f,ensure_ascii=False,indent=2)
-          END
+import json
+import os
+pid = "${{ steps.meta.outputs.plugin_id }}"
+ver = "${{ steps.meta.outputs.version }}"
+tag = "${{ github.ref_name }}"
+repo = "${{ github.repository }}"
+url = f"https://github.com/{repo}/releases/download/{tag}/{pid}.zip"
+with open("index.json","r",encoding="utf‑8") as f:
+            data = json.load(f)
+entry = {"id":pid,"version":ver,"download_url":url}
+data.append(entry)
+with open("index.json","w",encoding="utf‑8") as f:
+            json.dump(data,f,indent=2,ensure_ascii=False)
+END
 
-      - name: Commit index.json update
-        if: github.event_name == 'release'
+      - name: Commit index.json
+        if: github.event_name == 'release' || github.event_name == 'push'
         run: |
-          git config --global user.name "github‑actions[bot]"
-          git config --global user.email "github‑actions[bot]@users.noreply.github.com"
+          git config user.name "github‑actions[bot]"
+          git config user.email "github‑actions[bot]@users.noreply.github.com"
           git add index.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "update index.json for ${{ github.ref_name }}"
+          git diff --quiet && git diff --staged --quiet || git commit -m "update index.json for ${{ steps.meta.outputs.plugin_id }} ${{ steps.meta.outputs.version }}"
           git push origin main
