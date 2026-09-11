@@ -1,0 +1,4 @@
+D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/CMakeFiles/ricci_core.dir
+D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/CMakeFiles/ricci_cli.dir
+D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/CMakeFiles/ALL_BUILD.dir
+D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/CMakeFiles/ZERO_CHECK.dir
