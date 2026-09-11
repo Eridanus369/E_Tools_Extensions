@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EBEEC5F8-A3DF-3760-8327-6FDCC9AF3C3F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ricci_cli</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ricci_cli.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ricci_cli</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ricci_cli.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ricci_cli</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\Release\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">ricci_cli.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">ricci_cli</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\Release\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">ricci_cli.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">ricci_cli</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/third_party/Eigen" /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/Debug/ricci_cli.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/Debug/ricci_cli.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/third_party/Eigen" /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/Release/ricci_cli.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/Release/ricci_cli.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/third_party/Eigen" /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/MinSizeRel/ricci_cli.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/Release/MinSizeRel/ricci_cli.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/third_party/Eigen" /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\include;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/RelWithDebInfo/ricci_cli.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/Release/RelWithDebInfo/ricci_cli.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\CMake\bin\cmake.exe -SD:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native -BD:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build --check-stamp-file D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\CMake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\CMake\share\cmake-4.1\Modules\CheckCXXSourceCompiles.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\CMake\share\cmake-4.1\Modules\FindPython3.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckCompilerFlag.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckFlagCommonConfig.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\CMake\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Common.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Config.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11ConfigVersion.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11NewTools.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Targets.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeCXXCompiler.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeRCCompiler.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeSystem.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3Config.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3ConfigVersion.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3Targets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\CMake\bin\cmake.exe -SD:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native -BD:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build --check-stamp-file D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\CMake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\CMake\share\cmake-4.1\Modules\CheckCXXSourceCompiles.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\CMake\share\cmake-4.1\Modules\FindPython3.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckCompilerFlag.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckFlagCommonConfig.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\CMake\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Common.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Config.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11ConfigVersion.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11NewTools.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Targets.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeCXXCompiler.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeRCCompiler.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeSystem.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3Config.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3ConfigVersion.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3Targets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\CMake\bin\cmake.exe -SD:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native -BD:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build --check-stamp-file D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\CMake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\CMake\share\cmake-4.1\Modules\CheckCXXSourceCompiles.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\CMake\share\cmake-4.1\Modules\FindPython3.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckCompilerFlag.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckFlagCommonConfig.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\CMake\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Common.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Config.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11ConfigVersion.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11NewTools.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Targets.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeCXXCompiler.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeRCCompiler.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeSystem.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3Config.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3ConfigVersion.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3Targets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\CMake\bin\cmake.exe -SD:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native -BD:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build --check-stamp-file D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\CMake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\CMake\share\cmake-4.1\Modules\CheckCXXSourceCompiles.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\CMake\share\cmake-4.1\Modules\FindPython3.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckCompilerFlag.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckFlagCommonConfig.cmake;C:\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\CMake\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\CMake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Common.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Config.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11ConfigVersion.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11NewTools.cmake;D:\Blender5.2NPR\5.2\python\lib\site-packages\pybind11\share\cmake\pybind11\pybind11Targets.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeCXXCompiler.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeRCCompiler.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\4.1.0-rc2\CMakeSystem.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3Config.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3ConfigVersion.cmake;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\third_party\Eigen\build_eigen\Eigen3Targets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\core\geometry.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\core\mesh.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\core\pipeline.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\curvature\curvature.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\holonomy\holonomy.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\cone\cone_detector.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\ricci\ricci_flow.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\embedding\embedding.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\smooth\cone_smooth.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\quad\quad_remesh.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\visualize\visualizer.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\stages\stages.cpp" />
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ZERO_CHECK.vcxproj">
+      <Project>{7274C76B-9B63-322B-8300-2E260299A028}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\core\geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\core\mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\core\pipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\curvature\curvature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\holonomy\holonomy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\cone\cone_detector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\ricci\ricci_flow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\embedding\embedding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\smooth\cone_smooth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\quad\quad_remesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\visualize\visualizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\stages\stages.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\pybind_ricci.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5FE6A79C-2D45-3A65-A2AC-1A106E6A7112}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
