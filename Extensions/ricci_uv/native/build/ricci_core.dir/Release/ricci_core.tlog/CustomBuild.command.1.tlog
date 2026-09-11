@@ -1,0 +1,10 @@
+^D:\BLENDER\自制插件调试\E_TOOLS_EXTENSIONS\EXTENSIONS\RICCI_UV\NATIVE\CMAKELISTS.TXT
+setlocal
+C:\CMake\bin\cmake.exe -SD:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native -BD:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build --check-stamp-file D:/blender/自制插件调试/E_Tools_Extensions/Extensions/ricci_uv/native/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
