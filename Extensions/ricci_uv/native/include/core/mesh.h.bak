@@ -1,0 +1,67 @@
+#pragma once
+#include "geometry.h"
+#include <vector>
+#include <array>
+#include <string>
+#include <unordered_set>
+#include <unordered_map>
+#include <cstdint>
+namespace ricci {
+struct HalfEdge {
+    int origin = -1;
+    int twin   = -1;
+    int next   = -1;
+    int prev   = -1;
+    int face   = -1;
+};
+struct Face {
+    int halfedge = -1;
+};
+struct Vertex {
+    Vec3 pos;
+    int halfedge = -1;
+    int originalId = -1;
+    double u        = 0.0;
+    double targetK  = 0.0;
+    double currentK = 0.0;
+    double angleSum = 0.0;
+    bool isCone            = false;
+    bool isBoundary        = false;
+    bool allowConeOnBound  = false; 
+    bool isVirtualCopy     = false; 
+};
+class Mesh {
+public:
+    std::vector<Vertex>   vertices;
+    std::vector<HalfEdge> halfedges;
+    std::vector<Face>     faces;
+    std::vector<std::array<int,3>> triangles;
+    bool loadOBJ(const std::string& path);
+    void buildHalfEdge();
+    void markSeams(const std::vector<std::pair<int,int>>& seams);
+    void cutAlongSeams();
+    int numVertices()  const { return (int)vertices.size(); }
+    int numFaces()     const { return (int)faces.size(); }
+    int numHalfEdges() const { return (int)halfedges.size(); }
+    bool isSeam(int v0, int v1) const;
+    bool isBoundaryHalfEdge(int h) const { return halfedges[h].twin < 0; }
+    bool isBoundaryVertex(int v)   const { return vertices[v].isBoundary; }
+    std::vector<int> outgoingHalfEdges(int v) const;
+    std::vector<int> adjacentFaces(int v) const;
+    std::array<int,3> faceVertices(int f) const;
+    // 只写函数声明，删掉头文件内原来的函数体
+    int dest(int h) const;
+    double edgeLength(int h) const;
+    void updateEdgeLengths();
+    double computeAngleSum(int v) const;
+    int eulerCharacteristic() const {
+        return numVertices() - numHalfEdges()/2 + numFaces();
+    }
+private:
+    std::unordered_set<uint64_t> seamSet_;
+    static uint64_t edgeKey(int a, int b) {
+        if (a > b) std::swap(a, b);
+        return (uint64_t(uint32_t(a)) << 32) | uint64_t(uint32_t(b));
+    }
+};
+}

@@ -1,0 +1,15 @@
+﻿#pragma once
+#include "core/mesh.h"
+#include <vector>
+
+namespace ricci {
+
+/// 锥奇异点 UV 平滑
+/// 在锥点邻域执行加权 Laplacian 平滑，保持与周围区域无拉伸
+void smoothConeUV(Mesh& mesh,
+                   std::vector<Vec2>& uv,
+                   const std::vector<int>& coneVertices,
+                   int iterations,
+                   double strength);
+
+} // namespace ricci

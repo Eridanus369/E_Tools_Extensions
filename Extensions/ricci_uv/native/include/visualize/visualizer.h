@@ -1,0 +1,48 @@
+﻿#pragma once
+#include "core/mesh.h"
+#include <vector>
+#include <string>
+
+namespace ricci {
+
+class Visualizer {
+public:
+    // ---- 已有 ----
+    static bool exportVertexCSV(const Mesh& mesh, const std::string& path);
+    static bool exportHistogramCSV(const std::vector<int>& counts,
+                                    double minV, double maxV,
+                                    const std::string& path);
+    static bool exportMeshSVG(const Mesh& mesh, const std::string& path,
+                               bool colorByTarget = false,
+                               int width = 1200, int height = 1200);
+    static bool exportHeatmapPNG(const Mesh& mesh, const std::string& path,
+                                  bool colorByTarget = false,
+                                  int width = 1000, int height = 1000);
+    static void jetColor(double t, unsigned char& r,
+                          unsigned char& g, unsigned char& b);
+
+    // ---- 新增：UV 可视化 ----
+    /// UV 布局 SVG（2D，按曲率着色）
+    static bool exportUVSVG(const Mesh& mesh,
+                             const std::vector<Vec2>& uv,
+                             const std::string& path,
+                             bool colorByTarget = false,
+                             int width = 1000, int height = 1000);
+
+    /// UV 布局 PNG（光栅化，按曲率着色）
+    static bool exportUVPNG(const Mesh& mesh,
+                             const std::vector<Vec2>& uv,
+                             const std::string& path,
+                             bool colorByTarget = false,
+                             int width = 1000, int height = 1000);
+
+    /// 带 UV 的 OBJ（vt + f v/vt），方便导入 Blender 验证
+    static bool exportOBJWithUV(const Mesh& mesh,
+                                 const std::vector<Vec2>& uv,
+                                 const std::string& path);
+
+private:
+    static std::vector<Vec2> projectIsometric(const Mesh& mesh);
+};
+
+} // namespace ricci

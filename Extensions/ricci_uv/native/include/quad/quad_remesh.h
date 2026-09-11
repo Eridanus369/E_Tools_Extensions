@@ -1,0 +1,75 @@
+﻿#pragma once
+#include <Eigen/Core>
+#include <vector>
+#include <array>
+
+namespace ricci {
+
+using Vec3 = Eigen::Vector3d;
+using Vec2 = Eigen::Vector2d;
+
+/// QuadriFlow 风格的四边形化重网格
+/// 基于 Instant Meshes 的场对齐思想 + QuadriFlow 的奇异点最小化
+class QuadRemesh {
+public:
+    struct Options {
+        int  targetFaces    = 5000;  // 目标四边形面数
+        bool preserveSharp  = false; // 是否保持锐边
+        int  seed           = 0;     // 随机种子（0 = 随机）
+        int  smoothIters    = 10;    // 平滑迭代次数
+        double alignWeight  = 1.0;   // 场对齐权重
+    };
+
+    struct Result {
+        std::vector<Vec3>              vertices;  // 新顶点位置
+        std::vector<std::array<int,4>> quads;     // 四边形面索引
+        std::vector<Vec2>              uv;        // 新顶点的 UV（从原网格插值）
+        bool success = false;
+    };
+
+    /// 主入口
+    /// @param inVerts     输入三角网格顶点
+    /// @param inTris      输入三角网格面（扁平，每3个一组）
+    /// @param opt         选项
+    /// @param origUV      原始 UV（用于插值，可为空）
+    static Result run(const std::vector<Vec3>& inVerts,
+                       const std::vector<int>& inTris,
+                       const Options& opt,
+                       const std::vector<Vec2>& origUV = {});
+
+private:
+    // ---- 内部阶段 ----
+    struct Field {
+        std::vector<Vec3> directions;  // 每面方向
+        std::vector<double> scale;     // 每面尺度
+    };
+
+    /// 阶段 1：计算方向场（Instant Meshes 的平滑场）
+    static Field computeOrientationField(
+        const std::vector<Vec3>& verts,
+        const std::vector<int>& tris,
+        int smoothIters);
+
+    /// 阶段 2：位置场优化（将顶点吸附到目标密度）
+    static std::vector<Vec3> optimizePositions(
+        const std::vector<Vec3>& verts,
+        const std::vector<int>& tris,
+        const Field& field,
+        int targetCount,
+        int iters);
+
+    /// 阶段 3：提取四边形连通性
+    static std::vector<std::array<int,4>> extractQuads(
+        const std::vector<Vec3>& newVerts,
+        const std::vector<Vec3>& oldVerts,
+        const std::vector<int>& oldTris);
+
+    /// 阶段 4：UV 插值（重心坐标）
+    static std::vector<Vec2> interpolateUV(
+        const std::vector<Vec3>& newVerts,
+        const std::vector<Vec3>& oldVerts,
+        const std::vector<int>& oldTris,
+        const std::vector<Vec2>& oldUV);
+};
+
+} // namespace ricci

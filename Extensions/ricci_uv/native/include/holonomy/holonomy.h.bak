@@ -1,0 +1,24 @@
+#pragma once
+#include "core/mesh.h"
+#include <vector>
+
+namespace ricci {
+
+/// 离散和乐（角度亏损绕顶点累加）
+/// 对 Ricci 流而言，和乐 = 2π - Σθ（内点）或 π - Σθ（边界）
+/// 与 currentK 一致，但独立计算用于交叉验证
+class Holonomy {
+public:
+    /// 计算每个顶点的和乐角
+    static std::vector<double> compute(const Mesh& mesh);
+
+    /// 最大和乐误差（用于收敛判定）
+    static double maxError(const Mesh& mesh);
+
+    /// 返回和乐异常点（|H| > threshold），排除边界（可选）
+    static std::vector<int> detectAnomalies(const Mesh& mesh,
+                                             double threshold,
+                                             bool includeBoundary = false);
+};
+
+} // namespace ricci

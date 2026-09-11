@@ -1,0 +1,60 @@
+﻿#pragma once
+#include "core/mesh.h"
+#include <vector>
+#include <string>
+
+namespace ricci {
+
+/// 平面嵌入：从收敛后的度量（u_i）展开到 2D
+///
+/// 算法：BFS 展开
+///   1. 对每个连通分量选一个种子三角形，按逆时针放置
+///   2. BFS 遍历：对每条内部边，用两圆相交公式放置对面顶点
+///   3. 定向规则：对面顶点放在有向边的左侧，保证一致性
+///   4. 归一化 + 打包到 [0,1]²
+class Embedding {
+public:
+    struct Options {
+        bool   normalize = true;    // 归一化到 [0,1]
+        double padding   = 0.02;    // 边距
+        bool   verbose   = true;
+    };
+
+    struct Result {
+        std::vector<Vec2> uv;
+        bool   success       = false;
+        std::string error;
+        int    numComponents = 0;
+        int    numFaces      = 0;
+        int    numFlipped    = 0;   // 有向面积为负的三角形数
+    };
+
+    /// 主入口
+    static Result embed(const Mesh& mesh, const Options& opt = {});
+
+    /// 归一化并打包到 [0,1]²
+    static void pack(std::vector<Vec2>& uv, double padding = 0.02);
+
+private:
+    /// 度量边长（相交圆，φ=π/2）：l_ij = sqrt(r_i² + r_j²)
+    static double metricLen(const Mesh& mesh, int halfedge);
+
+    /// 两圆相交：p0 圆心，半径 d0；p1 圆心，半径 d1
+    /// 返回落在 (p0→p1) 左侧的那个交点
+    static bool circleIntersect(const Vec2& p0, const Vec2& p1,
+                                 double d0, double d1, Vec2& out);
+
+    /// 按面连通分量分组（用 twin 关系）
+    static std::vector<std::vector<int>> connectedComponents(const Mesh& mesh);
+
+    /// 展开单个连通分量
+    static bool embedComponent(const Mesh& mesh,
+                                const std::vector<int>& faces,
+                                std::vector<Vec2>& uv,
+                                int& numFlipped);
+
+    /// 找分量内质量最好的种子面（边长比最均匀）
+    static int pickSeedFace(const Mesh& mesh, const std::vector<int>& faces);
+};
+
+} // namespace ricci
