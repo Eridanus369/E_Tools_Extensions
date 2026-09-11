@@ -1,0 +1,13 @@
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\core\geometry.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\geometry.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\core\mesh.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\mesh.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\core\pipeline.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\pipeline.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\curvature\curvature.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\curvature.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\holonomy\holonomy.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\holonomy.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\cone\cone_detector.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\cone_detector.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\ricci\ricci_flow.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\ricci_flow.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\embedding\embedding.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\embedding.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\smooth\cone_smooth.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\cone_smooth.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\quad\quad_remesh.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\quad_remesh.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\visualize\visualizer.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\visualizer.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\stages\stages.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\stages.obj
+D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\src\main.cpp;D:\blender\自制插件调试\E_Tools_Extensions\Extensions\ricci_uv\native\build\ricci_cli.dir\Release\main.obj
