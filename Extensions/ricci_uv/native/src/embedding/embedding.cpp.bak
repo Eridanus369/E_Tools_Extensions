@@ -1,0 +1,266 @@
+#include "embedding/embedding.h"
+
+#include <queue>
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+
+namespace ricci {
+
+// ============================================================
+// 度量边长
+// ============================================================
+double Embedding::metricLen(const Mesh& mesh, int halfedge) {
+    int a = mesh.halfedges[halfedge].origin;
+    int b = mesh.dest(halfedge);
+    double ra = std::exp(mesh.vertices[a].u);
+    double rb = std::exp(mesh.vertices[b].u);
+    return std::sqrt(ra*ra + rb*rb);   // 相交圆，φ=π/2
+}
+
+// ============================================================
+// 两圆相交，选左侧解
+// ============================================================
+bool Embedding::circleIntersect(const Vec2& p0, const Vec2& p1,
+                                 double d0, double d1, Vec2& out) {
+    Vec2 d = p1 - p0;
+    double L = d.norm();
+    if (L < EPS) return false;
+
+    // 三角形不等式软化：钳制 a 值
+    double a = (d0*d0 - d1*d1 + L*L) / (2.0 * L);
+    double h2 = d0*d0 - a*a;
+    if (h2 < 0.0) h2 = 0.0;      // 退化 → 落在连线上
+    double h = std::sqrt(h2);
+
+    Vec2 dir = d / L;
+    Vec2 perp(-dir.y(), dir.x());  // 逆时针 90° → 左侧
+    Vec2 mid = p0 + a * dir;
+    out = mid + h * perp;
+    return true;
+}
+
+// ============================================================
+// 连通分量（以面的 twin 邻接 BFS）
+// ============================================================
+std::vector<std::vector<int>>
+Embedding::connectedComponents(const Mesh& mesh) {
+    const int nF = mesh.numFaces();
+    std::vector<int> comp(nF, -1);
+    std::vector<std::vector<int>> result;
+
+    for (int f0 = 0; f0 < nF; ++f0) {
+        if (comp[f0] >= 0) continue;
+        int cid = (int)result.size();
+        result.emplace_back();
+
+        std::queue<int> Q;
+        Q.push(f0);
+        comp[f0] = cid;
+
+        while (!Q.empty()) {
+            int f = Q.front(); Q.pop();
+            result[cid].push_back(f);
+
+            int h0 = mesh.faces[f].halfedge;
+            int h  = h0;
+            do {
+                int tw = mesh.halfedges[h].twin;
+                if (tw >= 0) {
+                    int nf = mesh.halfedges[tw].face;
+                    if (nf >= 0 && comp[nf] < 0) {
+                        comp[nf] = cid;
+                        Q.push(nf);
+                    }
+                }
+                h = mesh.halfedges[h].next;
+            } while (h != h0);
+        }
+    }
+    return result;
+}
+
+// ============================================================
+// 选种子面：质量 = min_edge / max_edge 最大者
+// ============================================================
+int Embedding::pickSeedFace(const Mesh& mesh, const std::vector<int>& faces) {
+    int best = faces[0];
+    double bestQ = -1.0;
+
+    for (int f : faces) {
+        int h0 = mesh.faces[f].halfedge;
+        double l0 = metricLen(mesh, h0);
+        double l1 = metricLen(mesh, mesh.halfedges[h0].next);
+        double l2 = metricLen(mesh, mesh.halfedges[h0].prev);
+
+        double lmin = std::min({l0, l1, l2});
+        double lmax = std::max({l0, l1, l2});
+        if (lmax < EPS) continue;
+        double q = lmin / lmax;
+        if (q > bestQ) { bestQ = q; best = f; }
+    }
+    return best;
+}
+
+// ============================================================
+// 展开单个连通分量
+// ============================================================
+bool Embedding::embedComponent(const Mesh& mesh,
+                                const std::vector<int>& faces,
+                                std::vector<Vec2>& uv,
+                                int& numFlipped) {
+    if (faces.empty()) return true;
+
+    const int nV = mesh.numVertices();
+    std::vector<bool> placed(nV, false);
+
+    // ---------- 1. 选种子面 ----------
+    int seed = pickSeedFace(mesh, faces);
+    int h0   = mesh.faces[seed].halfedge;
+    // 面 seed 的顶点： (v0, v1, v2)，半边顺序 h0 → h0.next → h0.prev
+    int v0 = mesh.halfedges[h0].origin;
+    int v1 = mesh.dest(h0);
+    int v2 = mesh.halfedges[mesh.halfedges[h0].prev].origin;
+
+    double l01 = metricLen(mesh, h0);
+    double l12 = metricLen(mesh, mesh.halfedges[h0].next);
+    double l20 = metricLen(mesh, mesh.halfedges[h0].prev);
+
+    uv[v0] = Vec2(0.0, 0.0);
+    uv[v1] = Vec2(std::max(l01, EPS), 0.0);
+    placed[v0] = placed[v1] = true;
+
+    // v2 放在 (v0→v1) 的左侧
+    Vec2 p2;
+    if (!circleIntersect(uv[v0], uv[v1], l20, l12, p2)) {
+        p2 = Vec2(l20, 0.0);  // 退化回退
+    }
+    uv[v2] = p2;
+    placed[v2] = true;
+
+    // ---------- 2. BFS 展开 ----------
+    std::queue<int> Q;
+    std::vector<bool> visited(mesh.numFaces(), false);
+    Q.push(seed);
+    visited[seed] = true;
+
+    while (!Q.empty()) {
+        int f = Q.front(); Q.pop();
+        int hStart = mesh.faces[f].halfedge;
+        int h = hStart;
+        do {
+            int tw = mesh.halfedges[h].twin;
+            if (tw >= 0) {
+                int nf = mesh.halfedges[tw].face;
+                if (nf >= 0 && !visited[nf]) {
+                    // h: a→b（面 f 中）
+                    // tw: b→a（面 nf 中）
+                    int a = mesh.halfedges[h].origin;
+                    int b = mesh.dest(h);
+
+                    // nf 的第三个顶点（不在 a、b 中）
+                    int cn = mesh.halfedges[mesh.halfedges[tw].prev].origin;
+
+                    if (!placed[cn]) {
+                        // 用 tw 的两条边度量：
+                        //   |cn - a| = metricLen(tw.next)
+                        //   |cn - b| = metricLen(tw.prev)
+                        double d_a = metricLen(mesh, mesh.halfedges[tw].next);
+                        double d_b = metricLen(mesh, mesh.halfedges[tw].prev);
+
+                        // 以 b 为 p0，a 为 p1，求落在 (b→a) 左侧的点
+                        Vec2 pnew;
+                        if (circleIntersect(uv[b], uv[a], d_b, d_a, pnew)) {
+                            uv[cn] = pnew;
+                        } else {
+                            uv[cn] = 0.5 * (uv[a] + uv[b]);  // 退化回退
+                        }
+                        placed[cn] = true;
+                    }
+                    visited[nf] = true;
+                    Q.push(nf);
+                }
+            }
+            h = mesh.halfedges[h].next;
+        } while (h != hStart);
+    }
+
+    // ---------- 3. 检查翻转 ----------
+    for (int f : faces) {
+        auto v = mesh.faceVertices(f);
+        double s = triangleArea2D(uv[v[0]], uv[v[1]], uv[v[2]]);
+        if (s < 0.0) numFlipped++;
+    }
+
+    return true;
+}
+
+// ============================================================
+// 主入口
+// ============================================================
+Embedding::Result Embedding::embed(const Mesh& mesh, const Options& opt) {
+    Result res;
+    res.uv.assign(mesh.numVertices(), Vec2(0.0, 0.0));
+
+    auto comps = connectedComponents(mesh);
+    res.numComponents = (int)comps.size();
+    res.numFaces      = mesh.numFaces();
+
+    if (opt.verbose) {
+        std::cout << "[Embed] components = " << res.numComponents << "\n";
+    }
+
+    int totalFlipped = 0;
+    for (auto& comp : comps) {
+        int flipped = 0;
+        if (!embedComponent(mesh, comp, res.uv, flipped)) {
+            res.error = "embedComponent failed";
+            return res;
+        }
+        totalFlipped += flipped;
+    }
+    res.numFlipped = totalFlipped;
+
+    if (opt.normalize) {
+        pack(res.uv, opt.padding);
+    }
+
+    res.success = true;
+
+    if (opt.verbose) {
+        std::cout << "[Embed] flipped triangles = " << res.numFlipped << "\n";
+    }
+    return res;
+}
+
+// ============================================================
+// 归一化 + 打包到 [0,1]²
+// ============================================================
+void Embedding::pack(std::vector<Vec2>& uv, double padding) {
+    if (uv.empty()) return;
+
+    double minX = 1e30, maxX = -1e30;
+    double minY = 1e30, maxY = -1e30;
+    for (const auto& p : uv) {
+        minX = std::min(minX, p.x()); maxX = std::max(maxX, p.x());
+        minY = std::min(minY, p.y()); maxY = std::max(maxY, p.y());
+    }
+
+    double spanX = maxX - minX;
+    double spanY = maxY - minY;
+    double span  = std::max(spanX, spanY);
+    if (span < EPS) return;
+
+    double scale = (1.0 - 2.0 * padding) / span;
+
+    // 保持纵横比并居中
+    double offX = padding + (1.0 - 2.0 * padding - spanX * scale) * 0.5;
+    double offY = padding + (1.0 - 2.0 * padding - spanY * scale) * 0.5;
+
+    for (auto& p : uv) {
+        p.x() = offX + (p.x() - minX) * scale;
+        p.y() = offY + (p.y() - minY) * scale;
+    }
+}
+
+} // namespace ricci

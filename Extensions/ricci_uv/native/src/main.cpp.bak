@@ -1,0 +1,75 @@
+#include "core/mesh.h"
+#include "core/pipeline.h"
+#include "stages/stages.h"
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+using namespace ricci;
+
+static void printUsage() {
+    std::cout <<
+        "ricci_cli <input.obj> [options]\n"
+        "  --seams <file>        seam 边文件（每行: v0 v1，0-based）\n"
+        "  --max-cones <N>       锥奇异点上限 (default: 32)\n"
+        "  --threshold <t>       锥点曲率阈值 (default: 0.05)\n"
+        "  --boundary-cone       允许边界顶点为锥点\n"
+        "  --out <dir>           输出目录 (default: ./ricci_out)\n"
+        "  --iter <N>            Ricci 最大迭代 (default: 5000)\n"
+        "  --tol <t>             收敛容差 (default: 1e-6)\n";
+}
+
+int main(int argc, char** argv) {
+    if (argc < 2) { printUsage(); return 1; }
+
+    std::string input = argv[1];
+    std::string seamFile;
+    std::string outDir = "./ricci_out";
+
+    PipelineContext ctx;
+
+    for (int i = 2; i < argc; ++i) {
+        std::string a = argv[i];
+        if (a == "--seams" && i+1 < argc)         seamFile = argv[++i];
+        else if (a == "--max-cones" && i+1 < argc) ctx.maxCones = std::stoi(argv[++i]);
+        else if (a == "--threshold" && i+1 < argc) ctx.coneThreshold = std::stod(argv[++i]);
+        else if (a == "--boundary-cone")           ctx.allowConeOnBoundary = true;
+        else if (a == "--out" && i+1 < argc)       outDir = argv[++i];
+        else if (a == "--iter" && i+1 < argc)      ctx.ricciMaxIter = std::stoi(argv[++i]);
+        else if (a == "--tol" && i+1 < argc)       ctx.ricciTol = std::stod(argv[++i]);
+        else { std::cerr << "unknown arg: " << a << "\n"; printUsage(); return 1; }
+    }
+    ctx.outputDir = outDir;
+
+    // 加载网格
+    Mesh mesh;
+    if (!mesh.loadOBJ(input)) return 2;
+    std::cout << "[Load] V=" << mesh.numVertices()
+              << "  F=" << mesh.numFaces() << "\n";
+
+    // 加载 seam
+    if (!seamFile.empty()) {
+        std::ifstream in(seamFile);
+        std::vector<std::pair<int,int>> seams;
+        int a, b;
+        while (in >> a >> b) seams.emplace_back(a, b);
+        mesh.markSeams(seams);
+        mesh.cutAlongSeams();
+        std::cout << "[Seam] after cut: V=" << mesh.numVertices()
+                  << "  F=" << mesh.numFaces() << "\n";
+    }
+
+    // 组装流水线
+    Pipeline pipe;
+    pipe.addStage(StageId::Curvature);
+    pipe.addStage(StageId::Holonomy);
+    pipe.addStage(StageId::ConeDetect);
+    pipe.addStage(StageId::RicciFlow);
+    pipe.addStage(StageId::Embed);
+    pipe.addStage(StageId::Visualize);
+
+    bool ok = pipe.run(mesh, ctx);
+    return ok ? 0 : 3;
+}

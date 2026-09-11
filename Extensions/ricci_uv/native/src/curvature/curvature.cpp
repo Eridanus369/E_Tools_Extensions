@@ -1,0 +1,70 @@
+﻿#include "curvature/curvature.h"
+#include <algorithm>
+#include <cmath>
+
+namespace ricci {
+
+void Curvature::computeGaussian(Mesh& mesh) {
+    const int nV = mesh.numVertices();
+    for (int v = 0; v < nV; ++v) {
+        double sum = mesh.computeAngleSum(v);
+        mesh.vertices[v].angleSum = sum;
+
+        if (mesh.vertices[v].isBoundary) {
+            // 边界顶点：角度亏损用 π - Σθ（半圆基准）
+            mesh.vertices[v].currentK = PI - sum;
+        } else {
+            // 内点：K = 2π - Σθ
+            mesh.vertices[v].currentK = TWO_PI - sum;
+        }
+    }
+}
+
+void Curvature::computeBoundaryGeodesic(Mesh& mesh) {
+    // 边界顶点的测地曲率 = π - Σθ（与高斯曲率同一量，语义不同）
+    for (auto& v : mesh.vertices) {
+        if (v.isBoundary) {
+            v.currentK = PI - v.angleSum;
+        }
+    }
+}
+
+bool Curvature::checkGaussBonnet(const Mesh& mesh, double tol) {
+    double sumK = 0.0;
+    for (const auto& v : mesh.vertices) sumK += v.currentK;
+
+    // 对带边界圆盘：ΣK + Σκ_g = 2π
+    // 我们的 currentK 已统一处理，故直接验证 ΣK = 2πχ（χ=1）
+    double expected = TWO_PI * double(mesh.eulerCharacteristic());
+    return std::abs(sumK - expected) < tol * std::max(1.0, std::abs(expected));
+}
+
+std::vector<int> Curvature::histogram(const Mesh& mesh, int bins,
+                                       double& minV, double& maxV) {
+    minV = 1e30; maxV = -1e30;
+    for (const auto& v : mesh.vertices) {
+        minV = std::min(minV, v.currentK);
+        maxV = std::max(maxV, v.currentK);
+    }
+    if (maxV - minV < EPS) maxV = minV + 1.0;
+
+    std::vector<int> counts(bins, 0);
+    for (const auto& v : mesh.vertices) {
+        int b = int((v.currentK - minV) / (maxV - minV) * (bins - 1));
+        b = std::max(0, std::min(bins - 1, b));
+        counts[b]++;
+    }
+    return counts;
+}
+
+std::vector<int> Curvature::rankByMagnitude(const Mesh& mesh) {
+    std::vector<int> ids(mesh.numVertices());
+    for (int i = 0; i < mesh.numVertices(); ++i) ids[i] = i;
+    std::sort(ids.begin(), ids.end(), [&](int a, int b) {
+        return std::abs(mesh.vertices[a].currentK) >
+               std::abs(mesh.vertices[b].currentK);
+    });
+    return ids;
+}
+
+} // namespace ricci

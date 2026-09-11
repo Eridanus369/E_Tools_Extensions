@@ -1,0 +1,5 @@
+#include "core/geometry.h"
+// 全部 inline，此文件留作后续扩展（如重心坐标、最小二乘平面等）
+namespace ricci {
+// placeholder
+}
